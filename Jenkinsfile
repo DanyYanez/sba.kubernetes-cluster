@@ -11,8 +11,8 @@ pipeline {
             steps {
                 // 'STUB_VALUE' Environment Variable declared in Jenkins Configuration 
                 echo "STUB_VALUE = ${STUB_VALUE}"
-                sh "sed -i 's/<STUB_VALUE>/$STUB_VALUE/g' config.py"
-                sh 'cat config.py'
+                sh "sed -i 's/<STUB_VALUE>/$STUB_VALUE/g' Config.py"
+                sh 'cat Config.py'
             }
         }
         stage('Build') {
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script{
                     //sh 'BUILD_NUMBER = ${BUILD_NUMBER}'
-                    if (BUILD_NUMBER == "1") {
+                    if (BUILD_NUMBER == "2") {
                         sh 'docker run --name $CONTAINER_NAME -d -p 55000:55000 $DOCKER_HUB_REPO'
                     }
                     else {
