@@ -36,13 +36,13 @@ pipeline {
             steps {
                 script{
                     //sh 'BUILD_NUMBER = ${BUILD_NUMBER}'
-                    if (BUILD_NUMBER == "5") {
-                        sh 'docker run --name $CONTAINER_NAME -d -p 55000:55000 $DOCKER_HUB_REPO'
+                    if (BUILD_NUMBER == "1") {
+                        sh 'docker run --name $CONTAINER_NAME -d -p 9090:9090 $DOCKER_HUB_REPO'
                     }
                     else {
                         sh 'docker stop $CONTAINER_NAME'
                         sh 'docker rm $CONTAINER_NAME'
-                        sh 'docker run --name $CONTAINER_NAME -d -p 55000:55000 $DOCKER_HUB_REPO'
+                        sh 'docker run --name $CONTAINER_NAME -d -p 9090:9090 $DOCKER_HUB_REPO'
                     }
                     //sh 'echo "Latest image/code deployed"'
                 }
