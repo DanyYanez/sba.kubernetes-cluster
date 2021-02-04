@@ -35,7 +35,14 @@ pipeline {
         stage('Deploy') {
             steps {
                 script{
-                    $ kubectl create -f kubernetes.yaml
+                    if (BUILD_NUMBER == "10") {
+                        sh 'docker run --name $CONTAINER_NAME -d -p 6000:6000 $DOCKER_HUB_REPO'
+                    }
+                    else {
+                        sh 'docker stop $CONTAINER_NAME'
+                        sh 'docker rm $CONTAINER_NAME'
+                        sh 'docker run --name $CONTAINER_NAME -d -p 6000:6000 $DOCKER_HUB_REPO'
+                    }
 
                 }
             }
