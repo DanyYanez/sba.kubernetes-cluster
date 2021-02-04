@@ -35,6 +35,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script{
+			// Running the image that Ijust push
+			// if statement is for remove the old container
                     if (BUILD_NUMBER == "5") {
                         sh 'docker run --name $CONTAINER_NAME -d -p 6000:6000 $DOCKER_HUB_REPO'
                     }
@@ -46,6 +48,7 @@ pipeline {
 
                 }
             }
+		
         }
     }
 }
